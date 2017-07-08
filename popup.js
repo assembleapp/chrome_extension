@@ -1,6 +1,20 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "source") {
-    message.innerText = request.source;
+    message.innerText = "Sending to Assemble..."
+
+    var data = {
+      "query": "mutation ($data: ArbitraryObject!, $extension_uuid: String!){\n  create_chrome_extension_event(\n    extension_uuid: $extension_uuid,\n    data: $data\n    ) {\n    data\n  }\n}",
+      "variables":{
+        "data":{
+          "html": request.source
+        },
+        extension_uuid: "aaaa-bbbb-cccc-dddd-eeee",
+      }
+    }
+
+    $.post("https://assembleapp.co/api", data, function() {
+      message.innerText = "Page HTML sent to Assemble"
+    })
   }
 });
 
