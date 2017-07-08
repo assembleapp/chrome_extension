@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Send HTML to Assmble",
+  "description": "Send the HTML of the current page to Assemble",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "<all_urls>"
+  ]
+}
